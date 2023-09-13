@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-button{
+.enter-btn{
     display:flex;
     width: 500px;
     height: 100px;
@@ -20,7 +20,7 @@ button{
     text-shadow: black 0.05em 0.05em 0.1em;
 }
 
-button:hover{
+.enter-btn:hover{
     transition: 300ms ease-in-out;
     color: white;
     font-size: 30px;
