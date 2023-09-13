@@ -6,28 +6,41 @@ class CustomerInfo extends React.Component {
   render() {
     return (<>
       <Header />
-      <div className="calculator-image"><h2 className="text-image">ENTÃO BORA COMEÇAR OS TRABALHOS!!</h2></div>
       <div className="background-forms">
         <div className="question-form">
-          <h2>Para isso precisamos de algumas informações:</h2>
+          <div className="background-img" />
+          <div className="headliner"><h2>Para isso precisamos de algumas informações:</h2></div>
           <form>
             <div className="box">
-              <input type="text" name="Homens" />
-              <label>Homens</label>
-            </div>
-            <div className="box">
-              <input type="text" name="Mulheres" />
-              <label>Mulheres</label>
-            </div>
-            <div className="box">
-              <input type="text" name="Crianças" />
-              <label>Crianças</label>
-            </div>
-            <div className="box">
-              <input type="text" name="Comilões" />
-              <label>Comilões</label>
-            </div>
+              <h3 className="question">1.Quantos homens tem nesse churrasco?</h3>
+              <input type="text" name="Homens" placeholder="Apenas números" />
 
+            </div>
+            <div className="box">
+              <h3 className="question">2.Quantas Mulheres tem nesse churrasco?</h3>
+              <input type="text" name="Mulheres" placeholder="Apenas números" />
+
+            </div>
+            <div className="box">
+              <h3 className="question">3.Quantas Crianças tem nesse Churrasco?</h3>
+              <input type="text" name="Crianças" placeholder="Apenas números" />
+
+            </div>
+          </form>
+
+        </div>
+        <div className="meat-form">
+          <form>
+            <h2 className="headliner">QUAIS CARNES VOCÊ VAI QUERER?</h2>
+            <div className="meat-box">
+              <h3>Picanha</h3>
+              <img className="meat-images" src="https://receitasdolar.com/wp-content/uploads/2022/06/Picanha-1024x683.png" alt="picanha" />
+              <input className="meat-checkbox" type="checkbox" />
+            </div>
+            <div className="meat-box" />
+            <div className="meat-box" />
+            <div className="meat-box" />
+            <div className="meat-box" />
           </form>
         </div>
       </div>
