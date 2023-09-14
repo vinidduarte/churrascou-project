@@ -1,6 +1,8 @@
 import React from 'react';
 import './CustomerInfo.css';
-import Header from '../Header/index.tsx';
+import Header from '../Header';
+import items from './data';
+import MeatformList from '../Meat-formList';
 
 class CustomerInfo extends React.Component {
   render() {
@@ -29,20 +31,7 @@ class CustomerInfo extends React.Component {
           </form>
 
         </div>
-        <div className="meat-form">
-          <form>
-            <h2 className="headliner">QUAIS CARNES VOCÊ VAI QUERER?</h2>
-            <div className="meat-box">
-              <h3>Picanha</h3>
-              <img className="meat-images" src="https://receitasdolar.com/wp-content/uploads/2022/06/Picanha-1024x683.png" alt="picanha" />
-              <input className="meat-checkbox" type="checkbox" />
-            </div>
-            <div className="meat-box" />
-            <div className="meat-box" />
-            <div className="meat-box" />
-            <div className="meat-box" />
-          </form>
-        </div>
+        <MeatformList data = { items } />
       </div>
     </>);
   }
