@@ -1,25 +1,34 @@
-import React from 'react';
+// Meatform.tsx
 import './meat-form.css';
 
+type MeatformProps = {
+  name: string;
+  image: string;
+  checkbox: boolean;
+  onCheckboxChange: (name: string, isChecked: boolean) => void;
+};
 
+function Meatform(props: MeatformProps) {
+  const { name, image, checkbox, onCheckboxChange } = props;
 
-class Meatform extends React.Component {
-  render() {
-    const { meatInfo: { name, image } } = this.props;
-    return (
-      <div className="meat-form">
-        <form>
-          <div className="meat-box">
-            <h3>{name}</h3>
-            <img className= "meat-image"src={image} alt="imagem-de-produto" />
-            <input className='input-checkbox' type="checkbox" />
-          </div>
-        </form>
-      </div>
-    );
-  }
+  const handleCheckboxChange = () => {
+    onCheckboxChange(name, !checkbox);
+  };
+
+  return (
+    <div className="meat-item">
+      {name}
+      <img className="meat-image" src={ image } alt={ name } />
+      <label>
+        <input
+          className="input-icon"
+          type="checkbox"
+          checked={ checkbox }
+          onChange={ handleCheckboxChange }
+        />
+      </label>
+    </div>
+  );
 }
-
-
 
 export default Meatform;

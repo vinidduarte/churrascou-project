@@ -12,7 +12,9 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-  }
+    width: 100%;
+    background-color: #e53434;
+}
   
 .question-form {
     background-image: url(https://maluvisita.com/wp-content/uploads/2018/09/Brunao-BBQ.png);
@@ -20,7 +22,6 @@
     background-position: center center;
     background-size: cover; 
     height: 100vh;
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,7 +54,35 @@
   font-size: 60px;
   text-shadow: 2px 2px 12px rgba(0,0,0,0.57);
 }
+.result{
+  padding: 200px 500px;
+  font-size: 50px;
+  font-family: 'Bebas Neue';
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 60px;
 
+  
+
+}
+.result-container{
+  margin-top: 100px;
+  border-radius: 27px;
+background: linear-gradient(145deg, #ffffff, #e6e6e6);
+box-shadow:  11px 11px 11px #a6a6a6,
+             -11px -11px 11px #ffffff;
+             display: flex;
+             align-items: center;
+             flex-direction: column;
+             justify-content: center;
+             font-size: 80px;
+             font-family: 'Bebas Neue';
+             padding: 20px;
+}
+
+
+
+  
 
 
 

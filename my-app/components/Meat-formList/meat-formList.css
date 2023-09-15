@@ -2,19 +2,22 @@
 
 
 .meat-items{
-    
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
+
 }
+
+ 
 .meat-container{
-    background-color: #e53434;
+    margin-top: 100px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 100px;
+    
+    
 }
 .meat-title{
     font-family: 'Bebas Neue';
@@ -22,7 +25,7 @@
     padding-bottom: 100px;
 }
 
-.meat-container button{
+.button {
     display:flex;
     width: 300px;
     height: 120px;
@@ -36,15 +39,18 @@
     font-family: 'Bebas Neue';
   
     font-size: 90px;
-    box-shadow: 0px 5px 20px orange;
+    box-shadow: 0px 5px 5px orange;
     border-color: transparent;
     transition: 300ms ease-in-out;
     text-shadow: black 0.03em 0.03em 0.05em;
 }
-.meat-container button:hover{
+.button:hover{
     transition: 300ms ease-in-out;
     color: white;
     font-size: 70px;
+}
+.button:active{
+    border: 5px solid black;
 }
 
 

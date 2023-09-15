@@ -3,9 +3,11 @@
 .footer{
     bottom: 0;
     color:black;
-    background-color: red;
+    background-color: #e53434;
     display: flex;
     justify-content: center;
     font-family: 'Montserrat';
     font-weight: 600;
+    height: 100px;
+    margin-top: 200px;
 }

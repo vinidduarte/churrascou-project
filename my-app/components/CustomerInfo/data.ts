@@ -7,7 +7,7 @@ const items = [
   },
   {
     id: 2,
-    name: 'Picanha-suína',
+    name: 'Picanha-suina',
     image: 'https://www.pamplona.com.br/fmanager/pamplona/receitas/t/imagem40_3.jpg',
     check: false,
   },
@@ -15,13 +15,13 @@ const items = [
     id: 3,
     name: 'Linguiça',
     image: 'https://seuchurrasco.com/wp-content/uploads/2022/03/grilled-barbecue-sausages-434193-727.jpg',
-    check: false,
+    checkbox: false,
   },
   {
     id: 4,
     name: 'Asinha-coxinha',
     image: 'https://marolacomcarambola.com.br/wp-content/uploads/2013/06/receita-de-coxinhas-e-asinhas-de-frango-marola-com-carambola.jpg',
-    check: false,
+    checkbox: false,
   },
   {
     id: 5,
