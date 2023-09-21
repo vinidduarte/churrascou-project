@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
  import './CustomerInfo.css';
 import Header from '../Header';
 import items from './data';
@@ -86,8 +86,6 @@ function CustomerInfo() {
 
     for (const carne in pontosCarnes) {
       resultado.carnes[carne] = Math.round(pontosCarnes[carne] * carnePorPonto);
-      resultado.carnes[carne] += Math.round(pontosCarnes[carne] * carnePorMulherPonto);
-      resultado.carnes[carne] += Math.round(pontosCarnes[carne] * carnePorCriancaPonto);
     }
 
     // Distribuir a quantidade de acompanhamentos por pessoa com base nos pontos
@@ -107,14 +105,9 @@ function CustomerInfo() {
 
     for (const acompanhamento in pontosAcompanhamentos) {
       if (acompanhamento === 'Pão-de-alho') {
-        // Considerando que 80g de pão de alho correspondem a 1 unidade
-        resultado.acompanhamentos[acompanhamento] = Math.round(pontosAcompanhamentos[acompanhamento] * (acompanhamentoPorPonto / 80));
-        resultado.acompanhamentos[acompanhamento] += Math.round(pontosAcompanhamentos[acompanhamento] * (acompanhamentoPorMulherPonto / 80));
-        resultado.acompanhamentos[acompanhamento] += Math.round(pontosAcompanhamentos[acompanhamento] * (acompanhamentoPorCriancaPonto / 80));
+        resultado.acompanhamentos[acompanhamento] = Math.round(acompanhamentoPorPonto / 80); // 80g = 1 unidade
       } else {
         resultado.acompanhamentos[acompanhamento] = Math.round(pontosAcompanhamentos[acompanhamento] * acompanhamentoPorPonto);
-        resultado.acompanhamentos[acompanhamento] += Math.round(pontosAcompanhamentos[acompanhamento] * acompanhamentoPorMulherPonto);
-        resultado.acompanhamentos[acompanhamento] += Math.round(pontosAcompanhamentos[acompanhamento] * acompanhamentoPorCriancaPonto);
       }
     }
 
@@ -122,6 +115,27 @@ function CustomerInfo() {
     // ...
 
     setResultado({ ...resultado });
+  };
+
+  const limparDados = () => {
+    setHomensValue('');
+    setMulheresValue('');
+    setCriancasValue('');
+
+    setCheckboxStateCarnes(
+      Object.fromEntries(prioridadesCarnes.map((item) => [item, false]))
+    );
+
+    setCheckboxStateAcompanhamentos(
+      Object.fromEntries(prioridadesAcompanhamentos.map((item) => [item, false]))
+    );
+
+    setResultado({
+      carnes: Object.fromEntries(prioridadesCarnes.map((item) => [item, 0])),
+      acompanhamentos: Object.fromEntries(prioridadesAcompanhamentos.map((item) => [item, 0])),
+      totalRefri: 0,
+      totalCerveja: 0,
+    });
   };
 
   return (
@@ -144,7 +158,7 @@ function CustomerInfo() {
           </div>
         </div>
         <div className="meatform-container">
-          <h2>Quais carnes você vai servir?</h2>
+          <h2 className='headliner'>Quais carnes você vai servir?</h2>
           <MeatformList
             data={items.filter((item) => prioridadesCarnes.includes(item.name))}
             checkboxState={checkboxStateCarnes}
@@ -156,7 +170,7 @@ function CustomerInfo() {
           />
         </div>
         <div className="meatform-container">
-          <h2>Quais acompanhamentos você vai servir?</h2>
+          <h2 className='headliner'>Quais acompanhamentos você vai servir?</h2>
           <MeatformList
             data={items.filter((item) => prioridadesAcompanhamentos.includes(item.name))}
             checkboxState={checkboxStateAcompanhamentos}
@@ -167,10 +181,13 @@ function CustomerInfo() {
             }}
           />
         </div>
-        <button onClick={calcularComida}>Calcular</button>
+        <div className="button-container">
+          <button className='button'onClick={calcularComida}>Calcular</button>
+          <button className='button'onClick={limparDados}>Limpar</button>
+        </div>
       </div>
       <div className="result">
-        <h2>Resultado:</h2>
+        <h2 className='headliner'>Resultado:</h2>
         <ul>
           {prioridadesCarnes.map((item) => (
             <li key={item}>
@@ -178,18 +195,18 @@ function CustomerInfo() {
             </li>
           ))}
           {prioridadesAcompanhamentos.map((item) => (
-  <li key={item}>
-    {item}: {item === 'Pão-de-alho' ? `${resultado.acompanhamentos[item]} unid` : `${resultado.acompanhamentos[item]}g`}
-  </li>
-))}
-
-
+            <li key={item}>
+              {item}: {resultado.acompanhamentos[item]}{item === 'Pão-de-alho' ? ' unid' : 'g'}
+            </li>
+          ))}
           <li>Total de Refrigerante: {resultado.totalRefri}ml</li>
           <li>Total de Cerveja: {resultado.totalCerveja}ml</li>
         </ul>
       </div>
+      <Footer />
     </>
   );
 }
 
 export default CustomerInfo;
+
