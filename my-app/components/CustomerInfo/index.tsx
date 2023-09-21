@@ -1,10 +1,9 @@
-import { useState } from 'react';
- import './CustomerInfo.css';
+import React, { useState } from 'react';
+import './CustomerInfo.css';
 import Header from '../Header';
 import items from './data';
 import MeatformList from '../Meat-formList';
 import Footer from '../Footer';
-
 
 type CheckboxState = Record<string, boolean>;
 
@@ -48,21 +47,19 @@ function CustomerInfo() {
     const totalCriancas = parseInt(criancasValue);
     const totalPessoas = totalHomens + totalMulheres + totalCriancas;
 
-    let totalCarnePorPessoa = 500; // 500g de carne por homem
-    let totalCarnePorMulher = 400; // 400g de carne por mulher
-    let totalCarnePorCrianca = 250; // 250g de carne por criança
+    let totalCarnePorPessoa = 500;
+    let totalCarnePorMulher = 400;
+    let totalCarnePorCrianca = 250;
 
-    let totalAcompanhamentosPorPessoa = 300; // 300g de acompanhamentos por pessoa
-    let totalAcompanhamentosPorMulher = 250; // 250g de acompanhamentos por mulher
-    let totalAcompanhamentosPorCrianca = 250; // 250g de acompanhamentos por criança
+    let totalAcompanhamentosPorPessoa = 300;
+    let totalAcompanhamentosPorMulher = 250;
+    let totalAcompanhamentosPorCrianca = 250;
 
-    // Calcular a quantidade total de carne e acompanhamentos selecionados
     const carnesSelecionadas = prioridadesCarnes.filter((item) => checkboxStateCarnes[item]);
     const acompanhamentosSelecionados = prioridadesAcompanhamentos.filter((item) => checkboxStateAcompanhamentos[item]);
     const totalCarnesSelecionadas = carnesSelecionadas.length;
     const totalAcompanhamentosSelecionados = acompanhamentosSelecionados.length;
 
-    // Calcular a quantidade total de pontos para as carnes e acompanhamentos selecionados
     const pontosCarnes: Record<string, number> = {};
     const pontosAcompanhamentos: Record<string, number> = {};
     carnesSelecionadas.forEach((carne, index) => {
@@ -72,47 +69,32 @@ function CustomerInfo() {
       pontosAcompanhamentos[acompanhamento] = totalAcompanhamentosSelecionados - index;
     });
 
-    // Distribuir a quantidade de carne por pessoa com base nos pontos
-    const totalCarneDistribuida = totalCarnePorPessoa * totalHomens;
+    // Distribuir a quantidade de carne com base no número total de pessoas
+    const totalCarneDistribuida =
+      totalCarnePorPessoa * totalHomens +
+      totalCarnePorMulher * totalMulheres +
+      totalCarnePorCrianca * totalCriancas;
     const carnePorPonto = totalCarneDistribuida / Object.values(pontosCarnes).reduce((a, b) => a + b, 0);
 
-    // Distribuir a quantidade de carne por mulher com base nos pontos
-    const totalCarneMulherDistribuida = totalCarnePorMulher * totalMulheres;
-    const carnePorMulherPonto = totalCarneMulherDistribuida / Object.values(pontosCarnes).reduce((a, b) => a + b, 0);
-
-    // Distribuir a quantidade de carne por criança com base nos pontos
-    const totalCarneCriancaDistribuida = totalCarnePorCrianca * totalCriancas;
-    const carnePorCriancaPonto = totalCarneCriancaDistribuida / Object.values(pontosCarnes).reduce((a, b) => a + b, 0);
+    // Distribuir a quantidade de acompanhamentos com base no número total de pessoas
+    const totalAcompanhamentosDistribuidos =
+      totalAcompanhamentosPorPessoa * totalHomens +
+      totalAcompanhamentosPorMulher * totalMulheres +
+      totalAcompanhamentosPorCrianca * totalCriancas;
+    const acompanhamentoPorPonto =
+      totalAcompanhamentosDistribuidos / Object.values(pontosAcompanhamentos).reduce((a, b) => a + b, 0);
 
     for (const carne in pontosCarnes) {
       resultado.carnes[carne] = Math.round(pontosCarnes[carne] * carnePorPonto);
     }
 
-    // Distribuir a quantidade de acompanhamentos por pessoa com base nos pontos
-    const totalAcompanhamentosDistribuidos = totalAcompanhamentosPorPessoa * totalHomens;
-    const acompanhamentoPorPonto =
-      totalAcompanhamentosDistribuidos / Object.values(pontosAcompanhamentos).reduce((a, b) => a + b, 0);
-
-    // Distribuir a quantidade de acompanhamentos por mulher com base nos pontos
-    const totalAcompanhamentosMulherDistribuidos = totalAcompanhamentosPorMulher * totalMulheres;
-    const acompanhamentoPorMulherPonto =
-      totalAcompanhamentosMulherDistribuidos / Object.values(pontosAcompanhamentos).reduce((a, b) => a + b, 0);
-
-    // Distribuir a quantidade de acompanhamentos por criança com base nos pontos
-    const totalAcompanhamentosCriancaDistribuidos = totalAcompanhamentosPorCrianca * totalCriancas;
-    const acompanhamentoPorCriancaPonto =
-      totalAcompanhamentosCriancaDistribuidos / Object.values(pontosAcompanhamentos).reduce((a, b) => a + b, 0);
-
     for (const acompanhamento in pontosAcompanhamentos) {
       if (acompanhamento === 'Pão-de-alho') {
-        resultado.acompanhamentos[acompanhamento] = Math.round(acompanhamentoPorPonto / 80); // 80g = 1 unidade
+        resultado.acompanhamentos[acompanhamento] = Math.round(acompanhamentoPorPonto / 80);
       } else {
         resultado.acompanhamentos[acompanhamento] = Math.round(pontosAcompanhamentos[acompanhamento] * acompanhamentoPorPonto);
       }
     }
-
-    // Restante do código permanece igual
-    // ...
 
     setResultado({ ...resultado });
   };
@@ -182,8 +164,8 @@ function CustomerInfo() {
           />
         </div>
         <div className="button-container">
-          <button className='button'onClick={calcularComida}>Calcular</button>
-          <button className='button'onClick={limparDados}>Limpar</button>
+          <button className='button' onClick={calcularComida}>Calcular</button>
+          <button className='button' onClick={limparDados}>Limpar</button>
         </div>
       </div>
       <div className="result">
@@ -209,4 +191,3 @@ function CustomerInfo() {
 }
 
 export default CustomerInfo;
-
