@@ -1,5 +1,5 @@
- import InitialPage from './InitialPage';
 import { Routes, Route } from 'react-router-dom';
+import InitialPage from './InitialPage';
 import CustomerInfo from './CustomerInfo';
 
 function App() {

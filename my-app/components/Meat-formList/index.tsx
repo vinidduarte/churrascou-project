@@ -20,7 +20,7 @@ function MeatformList(props: MeatformListProps) {
 
   return (
     <div className="meat-container">
-      <h2 className="meat-title"></h2>
+      <h2 className="meat-title" />
       <div className="meat-items">
         {data.map((item) => (
           <Meatform

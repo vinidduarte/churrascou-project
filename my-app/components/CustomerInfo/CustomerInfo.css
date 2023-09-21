@@ -5,18 +5,19 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat';
-}
-.background-forms {
+  }
+  .background-forms {
     
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
+    
     background-color: #e53434;
-}
-  
+  }
+  h2{
+  font-family: 'Montserrat';
+  }
 .question-form {
     background-image: url(https://maluvisita.com/wp-content/uploads/2018/09/Brunao-BBQ.png);
     background-repeat: no-repeat;
@@ -95,6 +96,7 @@
   list-style-type: none;
   align-items: center;
 }
+
 
 
   
