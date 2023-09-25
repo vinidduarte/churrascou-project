@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './CustomerInfo.css';
 import Header from '../Header';
 import items from './data';
@@ -42,10 +42,9 @@ function CustomerInfo() {
   });
 
   const calcularComida = () => {
-    const totalHomens = parseInt(homensValue);
-    const totalMulheres = parseInt(mulheresValue);
-    const totalCriancas = parseInt(criancasValue);
-    const totalPessoas = totalHomens + totalMulheres + totalCriancas;
+    const totalHomens = parseInt(homensValue, 10);
+    const totalMulheres = parseInt(mulheresValue, 10);
+    const totalCriancas = parseInt(criancasValue, 10);
 
     const totalCarnePorPessoa = 500;
     const totalCarnePorMulher = 400;
@@ -89,7 +88,9 @@ function CustomerInfo() {
       if (acompanhamento === 'Pão-de-alho') {
         resultado.acompanhamentos[acompanhamento] = Math.round(acompanhamentoPorPonto / 80);
       } else {
-        resultado.acompanhamentos[acompanhamento] = Math.round(pontosAcompanhamentos[acompanhamento] * acompanhamentoPorPonto);
+        resultado.acompanhamentos[acompanhamento] = Math.round(
+          pontosAcompanhamentos[acompanhamento] * acompanhamentoPorPonto,
+        );
       }
     }
 
@@ -124,16 +125,31 @@ function CustomerInfo() {
         <div className="question-form">
           <h2>Quantas pessoas vão ao churrasco?</h2>
           <div className="input-container">
-            <label>Homens:</label>
-            <input type="number" value={ homensValue } onChange={ (e) => setHomensValue(e.target.value) } />
+            <label htmlFor="homens">Homens:</label>
+            <input
+              type="number"
+              id="homens"
+              value={ homensValue }
+              onChange={ (e) => setHomensValue(e.target.value) }
+            />
           </div>
           <div className="input-container">
-            <label>Mulheres:</label>
-            <input type="number" value={ mulheresValue } onChange={ (e) => setMulheresValue(e.target.value) } />
+            <label htmlFor="mulheres">Mulheres:</label>
+            <input
+              type="number"
+              id="mulheres"
+              value={ mulheresValue }
+              onChange={ (e) => setMulheresValue(e.target.value) }
+            />
           </div>
           <div className="input-container">
-            <label>Crianças:</label>
-            <input type="number" value={ criancasValue } onChange={ (e) => setCriancasValue(e.target.value) } />
+            <label htmlFor="criancas">Crianças:</label>
+            <input
+              type="number"
+              id="criancas"
+              value={ criancasValue }
+              onChange={ (e) => setCriancasValue(e.target.value) }
+            />
           </div>
         </div>
         <div className="meatform-container">
@@ -161,8 +177,12 @@ function CustomerInfo() {
           />
         </div>
         <div className="button-container">
-          <button className="button" onClick={ calcularComida }>Calcular</button>
-          <button className="button" onClick={ limparDados }>Limpar</button>
+          <button className="button" onClick={ calcularComida }>
+            Calcular
+          </button>
+          <button className="button" onClick={ limparDados }>
+            Limpar
+          </button>
         </div>
       </div>
       <div className="result">
@@ -173,6 +193,7 @@ function CustomerInfo() {
               {item}
               :
               {resultado.carnes[item]}
+              {' '}
               g
             </li>
           ))}
@@ -186,12 +207,16 @@ function CustomerInfo() {
           ))}
           <li>
             Total de Refrigerante:
+            {' '}
             {resultado.totalRefri}
+            {' '}
             ml
           </li>
           <li>
             Total de Cerveja:
+            {' '}
             {resultado.totalCerveja}
+            {' '}
             ml
           </li>
         </ul>
