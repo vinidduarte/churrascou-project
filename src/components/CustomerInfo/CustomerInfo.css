@@ -18,6 +18,7 @@
 
 h2 {
   font-family: 'Montserrat';
+  margin-bottom: 30px;
 }
 
 .question-form {
@@ -31,17 +32,17 @@ h2 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-size: 60px;
+  font-size: 50px;
   font-family: 'Montserrat', sans-serif;
   color: white;
 }
 
 .input-container input {
   height: 40px;
-  width: 800px;
+  width: 1000px;
   margin: 20px;
   font-weight: bolder;
-  font-size: 50px;
+  font-size: 30px;
   font-family: "Montserrat", sans-serif;
   border: none;
   border-bottom: 2px solid black;
@@ -51,7 +52,7 @@ h2 {
 }
 
 .input-container {
-  margin: 20px;
+  margin: 30px;
   display: flex;
   align-items: left;
   justify-content: left;
@@ -60,7 +61,7 @@ h2 {
 }
 
 .headliner {
-  font-size: 80px;
+  font-size: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
