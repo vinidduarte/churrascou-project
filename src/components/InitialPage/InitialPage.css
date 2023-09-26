@@ -3,8 +3,8 @@
 
 .enter-btn {
     display: flex;
-    width: 800px;
-    height: 180px;
+    width: 700px;
+    height: 160px;
     background-color: orange;
     border-radius: 200px;
     justify-content: center;
@@ -14,7 +14,7 @@
     text-decoration: none;
     font-family: 'Montserrat';
     font-weight: bolder;
-    font-size: 90px;
+    font-size: 70px;
     box-shadow: 0px 5px 20px orange;
     border-color: transparent;
     transition: 300ms ease-in-out;
@@ -25,7 +25,7 @@
 .enter-btn:hover {
     transition: 300ms ease-in-out;
     color: white;
-    font-size: 60px;
+    font-size: 40px;
 }
 
 .enter-btn:active {
@@ -57,13 +57,13 @@
     justify-content: center;
     font-family: 'Montserrat';
     font-weight: 900;
-    font-size: 70px;
+    font-size: 60px;
 }
 
 .title {
     color: white;
     text-shadow: black 0.1em 0.1em 0.2em;
-    font-size: 170px;
+    font-size: 145px;
     display: flex;
     justify-content: center;
     align-items: center;
