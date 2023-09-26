@@ -42,7 +42,7 @@ h2 {
   width: 1000px;
   margin: 20px;
   font-weight: bolder;
-  font-size: 30px;
+  font-size: 40px;
   font-family: "Montserrat", sans-serif;
   border: none;
   border-bottom: 2px solid black;
@@ -54,8 +54,8 @@ h2 {
 .input-container {
   margin: 30px;
   display: flex;
-  align-items: left;
-  justify-content: left;
+  align-items: center;
+  justify-content: center;
   font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
 }
