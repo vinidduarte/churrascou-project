@@ -1,13 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@media screen and (min-width: 768px) {
+    .footer {
+        bottom: 0;
+        color: black;
+        background-color: #e53434;
+        display: flex;
+        justify-content: center;
+        font-family: 'Montserrat';
+        font-weight: 600;
+        height: 100px;
+        margin-top: 200px;
+    }
+}
 
-.footer{
-    bottom: 0;
-    color:black;
-    background-color: #e53434;
-    display: flex;
-    justify-content: center;
-    font-family: 'Montserrat';
-    font-weight: 600;
-    height: 100px;
-    margin-top: 200px;
+@media screen and (max-width: 767px) {
+    .footer {
+        bottom: 0;
+        color: black;
+        background-color: #e53434;
+        display: flex;
+        justify-content: center;
+        font-family: 'Montserrat';
+        font-weight: 600;
+        height: 100px;
+        margin-top: 100px;
+        font-size: 10px;
+    }
 }
