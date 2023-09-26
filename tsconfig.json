@@ -24,8 +24,8 @@
   },
   "include": [
     "src",
-    "src/App.ts",
-    "src/main.ts"
+    "src/App.tsx",
+    "src/main.tsx"
   ],
   "references": [
     {
