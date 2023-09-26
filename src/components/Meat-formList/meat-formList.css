@@ -19,7 +19,7 @@
 
 .meat-title {
     font-family: 'Bebas Neue';
-    font-size: 100px;
+    font-size: 80px;
     padding-bottom: 100px;
 }
 
@@ -36,7 +36,7 @@
     text-decoration: none;
     font-family: 'Bebas Neue';
     margin: 80px;
-    font-size: 70px;
+    font-size: 60px;
     box-shadow: 0px 5px 5px orange;
     border-color: transparent;
     transition: 300ms ease-in-out;
@@ -46,7 +46,7 @@
 .button:hover {
     transition: 300ms ease-in-out;
     color: white;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 .button:active {

@@ -45,6 +45,7 @@ function CustomerInfo() {
     const totalHomens = parseInt(homensValue, 10);
     const totalMulheres = parseInt(mulheresValue, 10);
     const totalCriancas = parseInt(criancasValue, 10);
+    const totalPessoas = totalHomens + totalMulheres + totalCriancas;
 
     const totalCarnePorPessoa = 500;
     const totalCarnePorMulher = 400;
@@ -94,7 +95,17 @@ function CustomerInfo() {
       }
     }
 
-    setResultado({ ...resultado });
+    // Calcular o total de refrigerante e cerveja
+    const totalRefrigerantePorPessoa = 700; // mL por pessoa
+    const totalCervejaPorPessoa = 700; // mL por pessoa
+    const totalRefrigerante = totalRefrigerantePorPessoa * totalPessoas;
+    const totalCerveja = totalCervejaPorPessoa * (totalHomens + totalMulheres); // Não incluir crianças na cerveja
+
+    setResultado({
+      ...resultado,
+      totalRefri: totalRefrigerante,
+      totalCerveja: totalCerveja,
+    });
   };
 
   const limparDados = () => {
@@ -129,8 +140,9 @@ function CustomerInfo() {
             <input
               type="number"
               id="homens"
-              value={ homensValue }
-              onChange={ (e) => setHomensValue(e.target.value) }
+              value={homensValue}
+              onChange={(e) => setHomensValue(e.target.value)}
+              placeholder="Em caso de nenhum, coloque 0"
             />
           </div>
           <div className="input-container">
@@ -138,8 +150,9 @@ function CustomerInfo() {
             <input
               type="number"
               id="mulheres"
-              value={ mulheresValue }
-              onChange={ (e) => setMulheresValue(e.target.value) }
+              value={mulheresValue}
+              onChange={(e) => setMulheresValue(e.target.value)}
+              placeholder="Em caso de nenhum, coloque 0"
             />
           </div>
           <div className="input-container">
@@ -147,40 +160,41 @@ function CustomerInfo() {
             <input
               type="number"
               id="criancas"
-              value={ criancasValue }
-              onChange={ (e) => setCriancasValue(e.target.value) }
+              value={criancasValue}
+              onChange={(e) => setCriancasValue(e.target.value)}
+              placeholder="Em caso de nenhum, coloque 0"
             />
           </div>
         </div>
         <div className="meatform-container">
           <h2 className="headliner">Quais carnes você vai servir?</h2>
           <MeatformList
-            data={ items.filter((item) => prioridadesCarnes.includes(item.name)) }
-            checkboxState={ checkboxStateCarnes }
-            onCheckboxChange={ (name) => {
+            data={items.filter((item) => prioridadesCarnes.includes(item.name))}
+            checkboxState={checkboxStateCarnes}
+            onCheckboxChange={(name) => {
               const newCheckboxState = { ...checkboxStateCarnes };
               newCheckboxState[name] = !newCheckboxState[name];
               setCheckboxStateCarnes(newCheckboxState);
-            } }
+            }}
           />
         </div>
         <div className="meatform-container">
           <h2 className="headliner">Quais acompanhamentos você vai servir?</h2>
           <MeatformList
-            data={ items.filter((item) => prioridadesAcompanhamentos.includes(item.name)) }
-            checkboxState={ checkboxStateAcompanhamentos }
-            onCheckboxChange={ (name) => {
+            data={items.filter((item) => prioridadesAcompanhamentos.includes(item.name))}
+            checkboxState={checkboxStateAcompanhamentos}
+            onCheckboxChange={(name) => {
               const newCheckboxState = { ...checkboxStateAcompanhamentos };
               newCheckboxState[name] = !newCheckboxState[name];
               setCheckboxStateAcompanhamentos(newCheckboxState);
-            } }
+            }}
           />
         </div>
         <div className="button-container">
-          <button className="button" onClick={ calcularComida }>
+          <button className="button" onClick={calcularComida}>
             Calcular
           </button>
-          <button className="button" onClick={ limparDados }>
+          <button className="button" onClick={limparDados}>
             Limpar
           </button>
         </div>
@@ -189,7 +203,7 @@ function CustomerInfo() {
         <h2 className="headliner">Resultado:</h2>
         <ul>
           {prioridadesCarnes.map((item) => (
-            <li key={ item }>
+            <li key={item}>
               {item}
               :
               {resultado.carnes[item]}
@@ -198,7 +212,7 @@ function CustomerInfo() {
             </li>
           ))}
           {prioridadesAcompanhamentos.map((item) => (
-            <li key={ item }>
+            <li key={item}>
               {item}
               :
               {resultado.acompanhamentos[item]}
