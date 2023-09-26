@@ -4,6 +4,11 @@ to = "/index.html"
 status = 200
 
 [[headers]]
-  for = "/*.js" # Isso corresponde a todos os arquivos .js
+  for = "/*.tsx" # Isso corresponde a todos os arquivos .tsx
+    [headers.values]
+    Content-Type = "application/javascript"
+
+[[headers]]
+  for = "/*.jsx" # Isso corresponde a todos os arquivos .jsx
     [headers.values]
     Content-Type = "application/javascript"
