@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-.enter-btn{
-    display:flex;
+
+.enter-btn {
+    display: flex;
     width: 1000px;
     height: 200px;
     background-color: orange;
@@ -21,22 +22,24 @@
     margin-top: 50px;
 }
 
-.enter-btn:hover{
+.enter-btn:hover {
     transition: 300ms ease-in-out;
     color: white;
     font-size: 50px;
 }
-.enter-btn:active{
+
+.enter-btn:active {
     border: 10px solid black;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
 }
-.background{
-    background-image: url(/home/vinicius/Documentos/churrascou-project/src/assets/aproxime-se-com-uma-deliciosa-comida-asiatica.jpg);
-    background-repeat: no-repeat; 
+
+.background {
+    background-image: url(https://www.sabornamesa.com.br/media/k2/items/cache/7b98703f48b0025160f2b9b5aad2a874_XL.jpg);
+    background-repeat: no-repeat;
     background-position: center center;
     background-size: 100%;
     height: 100vh;
@@ -46,7 +49,8 @@
     justify-content: center;
 
 }
-.div-inicio{
+
+.div-inicio {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,8 +59,12 @@
     font-weight: 900;
     font-size: 80px;
 }
-.title{
-        color: white;
-        text-shadow: black 0.1em 0.1em 0.2em;
-        font-size: 200px;
+
+.title {
+    color: white;
+    text-shadow: black 0.1em 0.1em 0.2em;
+    font-size: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
