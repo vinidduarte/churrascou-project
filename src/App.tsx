@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import InitialPage from '../components/InitialPage';
-import CustomerInfo from '../components/CustomerInfo';
+import InitialPage from './components/InitialPage';
+import CustomerInfo from './components/CustomerInfo';
 
 function App() {
   return (
