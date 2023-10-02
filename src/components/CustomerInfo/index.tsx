@@ -29,11 +29,15 @@ function CustomerInfo() {
   const [mulheresValue, setMulheresValue] = useState<string>('');
   const [criancasValue, setCriancasValue] = useState<string>('');
   const [checkboxStateCarnes, setCheckboxStateCarnes] = useState<CheckboxState>(
-    Object.fromEntries(prioridadesCarnes.map((item) => [item, false])),
+    Object.fromEntries(prioridadesCarnes.map((item) => [item, false]))
   );
   const [checkboxStateAcompanhamentos, setCheckboxStateAcompanhamentos] = useState<CheckboxState>(
-    Object.fromEntries(prioridadesAcompanhamentos.map((item) => [item, false])),
+    Object.fromEntries(prioridadesAcompanhamentos.map((item) => [item, false]))
   );
+  const [checkboxStateBebidas, setCheckboxStateBebidas] = useState<CheckboxState>(
+    Object.fromEntries(items.filter((item) => item.category === 'Bebida').map((item) => [item.name, false]))
+  );
+
   const [resultado, setResultado] = useState<Resultado>({
     carnes: Object.fromEntries(prioridadesCarnes.map((item) => [item, 0])),
     acompanhamentos: Object.fromEntries(prioridadesAcompanhamentos.map((item) => [item, 0])),
@@ -69,13 +73,13 @@ function CustomerInfo() {
       pontosAcompanhamentos[acompanhamento] = totalAcompanhamentosSelecionados - index;
     });
 
-    // Distribuir a quantidade de carne com base no número total de pessoas
+
     const totalCarneDistribuida = totalCarnePorPessoa * totalHomens
       + totalCarnePorMulher * totalMulheres
       + totalCarnePorCrianca * totalCriancas;
     const carnePorPonto = totalCarneDistribuida / Object.values(pontosCarnes).reduce((a, b) => a + b, 0);
 
-    // Distribuir a quantidade de acompanhamentos com base no número total de pessoas
+
     const totalAcompanhamentosDistribuidos = totalAcompanhamentosPorPessoa * totalHomens
       + totalAcompanhamentosPorMulher * totalMulheres
       + totalAcompanhamentosPorCrianca * totalCriancas;
@@ -95,11 +99,11 @@ function CustomerInfo() {
       }
     }
 
-    // Calcular o total de refrigerante e cerveja
+
     const totalRefrigerantePorPessoa = 700; // mL por pessoa
     const totalCervejaPorPessoa = 700; // mL por pessoa
-    const totalRefrigerante = totalRefrigerantePorPessoa * totalPessoas;
-    const totalCerveja = totalCervejaPorPessoa * (totalHomens + totalMulheres); // Não incluir crianças na cerveja
+    const totalRefrigerante = checkboxStateBebidas['Refrigerante'] ? (totalRefrigerantePorPessoa * totalPessoas) : 0;
+    const totalCerveja = checkboxStateBebidas['Cerveja'] ? (totalCervejaPorPessoa * (totalHomens + totalMulheres)) : 0;
 
     setResultado({
       ...resultado,
@@ -108,17 +112,22 @@ function CustomerInfo() {
     });
   };
 
+
   const limparDados = () => {
     setHomensValue('');
     setMulheresValue('');
     setCriancasValue('');
 
     setCheckboxStateCarnes(
-      Object.fromEntries(prioridadesCarnes.map((item) => [item, false])),
+      Object.fromEntries(prioridadesCarnes.map((item) => [item, false]))
     );
 
     setCheckboxStateAcompanhamentos(
-      Object.fromEntries(prioridadesAcompanhamentos.map((item) => [item, false])),
+      Object.fromEntries(prioridadesAcompanhamentos.map((item) => [item, false]))
+    );
+
+    setCheckboxStateBebidas(
+      Object.fromEntries(items.filter((item) => item.category === 'Bebida').map((item) => [item.name, false]))
     );
 
     setResultado({
@@ -190,6 +199,18 @@ function CustomerInfo() {
             }}
           />
         </div>
+        <div className="meatform-container">
+          <h2 className="headliner">Quais bebidas você vai servir?</h2>
+          <MeatformList
+            data={items.filter((item) => item.category === 'Bebida')}
+            checkboxState={checkboxStateBebidas}
+            onCheckboxChange={(name) => {
+              const newCheckboxState = { ...checkboxStateBebidas };
+              newCheckboxState[name] = !newCheckboxState[name];
+              setCheckboxStateBebidas(newCheckboxState);
+            }}
+          />
+        </div>
         <div className="button-container">
           <button className="button" onClick={calcularComida}>
             Calcular
@@ -205,33 +226,21 @@ function CustomerInfo() {
           {prioridadesCarnes.map((item) => (
             <li key={item}>
               {item}
-              :
-              {resultado.carnes[item]}
-              {' '}
-              g
+              : {resultado.carnes[item]} g
             </li>
           ))}
           {prioridadesAcompanhamentos.map((item) => (
             <li key={item}>
               {item}
-              :
-              {resultado.acompanhamentos[item]}
+              : {resultado.acompanhamentos[item]}
               {item === 'Pão-de-alho' ? ' unid' : 'g'}
             </li>
           ))}
           <li>
-            Total de Refrigerante:
-            {' '}
-            {resultado.totalRefri}
-            {' '}
-            ml
+            Total de Refrigerante: {resultado.totalRefri} ml
           </li>
           <li>
-            Total de Cerveja:
-            {' '}
-            {resultado.totalCerveja}
-            {' '}
-            ml
+            Total de Cerveja: {resultado.totalCerveja} ml
           </li>
         </ul>
       </div>

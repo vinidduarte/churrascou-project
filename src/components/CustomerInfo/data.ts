@@ -62,15 +62,17 @@ const items = [
 
   {
     id: 11,
-    name: 'Refri',
+    name: 'Refrigerante',
     image: 'https://s2.glbimg.com/GUda5oj9xkd_yQNyn36mDn9XJmo=/620x455/e.glbimg.com/og/ed/f/original/2018/08/17/beber-refrigerante-todos-os-dias-esta-te-matando.jpg',
     checkbox: false,
+    category: 'Bebida',
   },
   {
     id: 12,
     name: 'Cerveja',
     image: 'https://s2-oglobo.glbimg.com/g1Ff_7700Tj8BRA8RhyQitkRaaY=/0x0:1000x667/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2023/Z/I/xaWtPnQ0CAYk4YB61d4A/glass-bottles-beer-with-glass-ice-dark-background-1-.jpg',
     checkbox: false,
+    category: 'Bebida'
   },
 ];
 
